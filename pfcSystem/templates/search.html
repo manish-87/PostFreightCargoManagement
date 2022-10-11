@@ -1,0 +1,71 @@
+{% extends 'admin_base.html' %}
+
+{% block main %}
+
+<div class="card shadow m-2">
+    <div class="card-body">
+        <h5 class="p-2 text-danger" style="broder-bottom :2px solid orange">Search Booking</h5>
+
+        <div class="container-fluid">
+            <form method="post" enctype="multipart/form-data">
+                {%csrf_token %}
+
+              <div class="form-row">
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <label>Search by Name or Mobile Number</label>
+                    <input type="text" name="searchdata" class="form-control" placeholder="Enter Name/Contact Number" required>
+
+                  </div>
+                </div>
+              </div>
+
+
+                <input type="submit" value="Submit" class="m-2 px-3 btn btn-primary">
+            </form>
+            <h4 align="center">Result against "{{sd}}" keyword</h4>
+
+            <table class=" table table-brodered " id="example">
+               <thead>
+               <tr>
+                   <th>S.No</th>
+                   <th>Name</th>
+                   <th>Email</th>
+                   <th>Contact Number</th>
+                   <th>Action</th>
+
+               </tr>
+               </thead>
+               <tbody>
+               {%for i in booking %}
+               <tr>
+                   <td>{{forloop.counter}}</td>
+                   <td>{{i.name}}</td>
+                   <td>{{i.email}}</td>
+                   <td>{{i.mobile}}</td>
+                   <td><a href="{% url 'view_bookingdetail' i.id %}">View Detials</a>
+                   <td><a href="{% url 'delete_booking' i.id %}" class="text-danger"  onclick="return confirm('Are you Sure?')">Delete</a>
+
+
+                   </td>
+               </tr>
+               {% empty %}
+               <tr>
+                   <td>No Record found against this search</td>
+               </tr>
+
+               {% endfor %}
+
+               </tbody>
+           </table>
+        </div>
+
+
+
+    </div>
+</div>
+
+
+{% endblock %}
+
+

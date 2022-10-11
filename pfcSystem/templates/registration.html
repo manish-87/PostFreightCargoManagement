@@ -1,0 +1,74 @@
+{% include 'header.html' %}
+
+<script>
+    function checkpassword()
+    {
+    if(document.signup.pwd.value!=document.signup.cpwd.value)
+    {
+    alert('Password and Repeat Password field does not match');
+    document.signup.cpwd.focus();
+    return false;
+    }
+    return true;
+    }
+</script>
+
+<div class="card shadow m-5">
+    <div class="card-body">
+        <h5 class="p-2 text-danger" style="broder-bottom : 2px solid orange">Create an Account</h5>
+
+        <div class="conntainer-fluid">
+
+             <form method="post"name="signup" onsubmit="return checkpassword()">
+                {%csrf_token %}
+                <div class ="form-row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>First Name</label>
+                            <input type="text" name="firstname" class="form-control" placeholder="Enter First Name" pattern="[a-zA-Z]+" required>
+                        </div>
+                    </div>
+
+                <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Last Name</label>
+                            <input type="text" name="lastname" class="form-control" placeholder="Enter Last Name" pattern="[a-zA-Z]+"required>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label>Employee Code</label>
+                            <input type="text" name="empcode" class="form-control" placeholder="Enter Employee Code" pattern="[0-9]+"required>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label>Email ID</label>
+                            <input type="email" name="email" class="form-control" placeholder="Email ID" required>
+                        </div>
+                    </div>
+
+
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" name="pwd" class="form-control" placeholder="Enter Password" required>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Confirm Password</label>
+                            <input type="password" name="cpwd" class="form-control" placeholder="Enter Password Again" required>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <input type="submit" value="Submit" class="m-2 px-3 btn btn-primary">
+            </form>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,46 @@
+{% extends 'admin_base.html' %}
+
+{% block main %}
+
+<div class="card shadow m-2">
+    <div class="card-body">
+        <h5 class="p-2 text-danger" style="broder-bottom :2px solid orange">Unread Queries</h5>
+
+        <div class="container-fluid">
+            <h5 class="text-center">Report from {{fd}} to {{td}}</h5>
+           <table class=" table table-brodered " id="example">
+               <thead>
+               <tr>
+                   <th>S.No</th>
+                   <th>Name</th>
+                   <th>Email</th>
+                   <th>Contact Number</th>
+                   <th>Action</th>
+
+               </tr>
+               </thead>
+               <tbody>
+               {%for i in contact %}
+               <tr>
+                   <td>{{forloop.counter}}</td>
+                   <td>{{i.name}}</td>
+                   <td>{{i.emailid}}</td>
+                   <td>{{i.contact}}</td>
+                   <td><a href="{% url 'view_queries' i.id %}"style="width:80px">View Detials</a>
+
+
+                   </td>
+               </tr>
+
+               {% endfor %}
+
+               </tbody>
+           </table>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+

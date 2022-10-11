@@ -1,0 +1,96 @@
+{% extends 'admin_base.html' %}
+
+{% block main %}
+
+<div class="card shadow m-2">
+    <div class="card-body">
+        <h5 class="p-2 text-danger" style="broder-bottom : 2px solid orange">View Booking Detials</h5>
+
+        <div class="container-fluid">
+           <table class=" table table-brodered ">
+               <tr align="center">
+                  <td colspan="4" style="font-size :20px;color:red">Booking Detail</td>
+               </tr>
+               <tr>
+                  <th>Name</th>
+                   <td>{{booking.name}}</td>
+                   <th>Contact Number</th>
+                   <td>{{booking.mobile}}</td>
+               </tr>
+               <tr>
+                   <th>Email</th>
+                   <td>{{booking.email}}</td>
+                   <th>Location Shift From</th>
+                   <td>{{booking.location}}</td>
+               </tr>
+               <tr>
+                    <th>Location Shift To</th>
+                   <td>{{booking.shiftingloc}}</td>
+                    <th>Date of Shifting</th>
+                   <td>{{booking.shiftingdate}}</td>
+               </tr>
+                <tr>
+                    <th colspan="1">Brief of Items</th>
+                   <td colspan="3">{{booking.briefitems}}</td>
+
+               </tr>
+               <tr>
+
+                    <th colspan="1">Items to be Shifted</th>
+                   <td colspan="3">{{booking.items}}</td>
+               </tr>
+
+               <tr>
+                    <th>Request Date</th>
+                   <td colspan="3">{{booking.requestdate}}</td>
+
+               </tr>
+
+               {% if not booking.remark %}
+               <form method="post">
+                   {% csrf_token %}
+                   <tr>
+                       <th>Admin Remark</th>
+                       <td colspan="3"><textarea name="remark" class="form-control" required></textarea> </td>
+                   </tr>
+
+                     <tr>
+                       <th>&nbsp;</th>
+                       <td colspan="3"><button type="submit" class="btn btn-primary">Update <i class="fa fa-arrow-circle-right"></i></button> </td>
+                   </tr>
+               </form>
+
+               {% else %}
+
+               <tr>
+                    <th>Admin Remark</th>
+                   <td>{{booking.remark}}</td>
+                    <th>Last Updation Date</th>
+                   <td>{{booking.updationdate}}</td>
+               </tr>
+
+               {% endif %}
+
+
+
+
+           </table>
+        </div>
+    </div>
+</div>
+{% if error == "no" %}
+<script>
+    alert('Remark is Updated Successfully');
+    window.location =('{% url 'view_bookingdetail' booking.id  %});
+</script>
+{% endif %}
+{% if error == "yes" %}
+<script>
+    alert('Something went wrong,Please Try Again....');
+</script>
+{% endif %}
+
+
+{% endblock %}
+
+

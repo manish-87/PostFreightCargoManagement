@@ -1,0 +1,67 @@
+{% extends 'admin_base.html' %}
+
+{% block main %}
+
+<div class="card shadow m-2">
+    <div class="card-body">
+        <h5 class="p-2 text-danger" style="broder-bottom :2px solid orange">Edit Service Detail </h5>
+
+        <div class="container-fluid">
+            <form method="post" enctype="multipart/form-data">
+                {%csrf_token %}
+
+              <div class="form-row">
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <label>Service Title</label>
+                    <input type="text" name="servicetitle" class="form-control" placeholder="Service Title" value="{{service.title}}">
+
+                  </div>
+                </div>
+                  <div class="col-sm-12">
+                  <div class="form-group">
+                    <label>Description</label>
+                      <textarea name="description" class="form-control" placeholder="Description">{{service.description}}</textarea>
+
+                  </div>
+                </div>
+
+                  <div class="col-sm-6">
+                  <div class="form-group">
+                    <label>Image</label>
+                    <input type="file" name="image" class="form-control">
+
+                  </div>
+                </div>
+
+                     <div class="col-sm-6">
+                  <div class="form-group">
+                      <img src="{{service.image.url}}"height="100" width="100">
+
+
+                  </div>
+                </div>
+
+              </div>
+
+                <input type="submit" value="Submit" class="m-2 px-3 btn btn-primary">
+            </form>
+        </div>
+    </div>
+</div>
+{% if error == "no" %}
+<script>
+    alert('Service detail has been updated);
+    window.location =('{% url 'edit_services'  service.id %});
+</script>
+{% endif %}
+{% if error == "yes" %}
+<script>
+    alert('Something went wrong,Please Try Again....');
+</script>
+{% endif %}
+
+
+{% endblock %}
+
+

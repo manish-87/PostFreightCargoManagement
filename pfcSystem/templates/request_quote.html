@@ -1,0 +1,123 @@
+{% load static %}
+{% include 'header.html' %}
+<header class="container-fluid" style="broder:1px solid yellow">
+  <img src="{% static 'images/request.jpg'%}"width="100%" class="img-responsive">
+</header>
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Request Quote</li>
+
+  </ol>
+
+</nav>
+
+<div class="card shadow container mb-5">
+    <div class="card-body">
+        <h5 class="p-2 text-danger" style="broder-bottom :2px solid orange">Request Quote </h5>
+
+        <div class="container-fluid">
+            <form method="post">
+                {%csrf_token %}
+
+              <div class="form-row">
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" name="name" class="form-control" placeholder="Name">
+
+                  </div>
+                </div>
+                  <div class="col-sm-12">
+                       <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" name="email" class="form-control" placeholder="Email">
+
+                  </div>
+                </div>
+
+                  <div class="col-sm-12">
+                  <div class="form-group">
+                    <label>Contact Number</label>
+                    <input type="text" name="contact" class="form-control" placeholder="Contact">
+
+                  </div>
+                </div>
+                  <div class="col-sm-12">
+                  <div class="form-group">
+                    <label>Where do you want to our Service?</label>
+                    <input type="text" name="location" class="form-control" placeholder="Select your Location">
+
+                  </div>
+                </div>
+                  <div class="col-sm-12">
+                  <div class="form-group">
+                    <label>Select a location to parcel?</label>
+                    <input type="text" name="shiftingloc" class="form-control" placeholder="Select a location to parcel?">
+
+                  </div>
+                </div>
+
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <label>When do you want to parcel?</label>
+                    <input type="date" name="shiftingdate" class="form-control" >
+
+                  </div>
+                </div>
+
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <label>What do you want to parcel?</label>
+                    <select name="briefitems" class="form-control" >
+                       <option value="Select">Select</option>
+                      <option value="Books">Books</option>
+                      <option value="Laptops">Laptops</option>
+                      <option value="Letters">Letters</option>
+                      <option value="Money Order">Money Order</option>
+                      <option value="Furniture">Furniture</option>
+                      <option value="Mobiles & Accessories">Mobiles & Accessories</option>
+                      <option value="Cargo">Cargo</option>
+                      <option value="Flamable Substances">Flamable Substances</option>
+                      <option value="Fragile Substances">Fragile Substances</option>
+                      <option value="Others">Others</option>
+
+                    </select>
+
+                  </div>
+                </div>
+
+                 <div class="col-sm-12">
+                  <div class="form-group">
+                    <label> Mention all the items that you want to shift?</label>
+                    <textarea name="items" class="form-control" placeholder="Text the items to parcel"></textarea>
+
+
+                  </div>
+                </div>
+
+
+
+
+
+              </div>
+
+                <input type="submit" value="Submit" class="m-2 px-3 btn btn-primary">
+            </form>
+        </div>
+    </div>
+</div>
+{% if error == "no" %}
+<script>
+    alert('Your request has been recieved. We will contact you soon.');
+    window.location =('{% url 'request_quote' %});
+</script>
+{% endif %}
+{% if error == "yes" %}
+<script>
+    alert('Something went wrong,Please Try Again....');
+</script>
+{% endif %}
+
+

@@ -1,0 +1,30 @@
+{% load static %}
+{% include 'header.html' %}
+<header class="container-fluid" style="broder:1px solid yellow">
+  <img src="{% static 'images/contact.jpg'%}"width="70%" class="img-responsive ">
+</header>
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Services</li>
+
+  </ol>
+
+</nav>
+
+<div class="container">
+  <h3 class="page-title text-center">Services</h3>
+  <p class="text-center text-primary mt-3 fnt-weight-bold">from our Side</p>
+  <div class="row">
+
+    {% for i in services %}
+    <div class="col-sm-4">
+      <div class="card" style="width :300px"></div>
+      <img class="card-img-top" src="{{i.image.url}}" style="width:300px;height:300px">
+      <h4 class="card-title text-center">{{i.title}}</h4>
+      <p class="card-text text-justify px-3"> {{i.description}}</p>
+    </div>
+  </div>
+  {% endfor %}
+</div>

@@ -1,0 +1,47 @@
+{% extends 'admin_base.html' %}
+
+{% block main %}
+
+<div class="card shadow m-2">
+    <div class="card-body">
+        <h5 class="p-2 text-danger" style="broder-bottom :2px solid orange">Old Bookings </h5>
+
+        <div class="container-fluid">
+           <table class=" table table-brodered " id="example">
+               <thead>
+               <tr>
+                   <th>S.No</th>
+                   <th>Name</th>
+                   <th>Email</th>
+                   <th>Contact Number</th>
+                   <th>Action</th>
+
+               </tr>
+               </thead>
+               <tbody>
+               {%for i in booking %}
+               <tr>
+                   <td>{{forloop.counter}}</td>
+                   <td>{{i.name}}</td>
+                   <td>{{i.email}}</td>
+                   <td>{{i.mobile}}</td>
+                   <td><a href="{% url 'view_bookingdetail' i.id %}">View Detials</a>
+                   <td><a href="{% url 'delete_booking' i.id %}" class="text-danger"  onclick="return confirm('Are you Sure?')">Delete</a>
+
+
+                   </td>
+               </tr>
+
+               {% endfor %}
+
+               </tbody>
+           </table>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}
+
+

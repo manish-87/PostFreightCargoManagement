@@ -1,0 +1,42 @@
+{% extends 'admin_base.html' %}
+
+{% block main %}
+
+<div class="card shadow m-2">
+    <div class="card-body">
+        <h5 class="p-2 text-danger" style="broder-bottom :2px solid orange">Between Dates Reorts </h5>
+
+        <div class="container-fluid">
+            <form method="post" >
+                {%csrf_token %}
+
+              <div class="form-row">
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <label>From Date</label>
+                    <input type="date" name="fromdate" class="form-control" required>
+
+                  </div>
+                </div>
+
+                  <div class="col-sm-12">
+                  <div class="form-group">
+                    <label>To Date</label>
+                    <input type="date" name="todate" class="form-control" required>
+
+                  </div>
+                </div>
+
+
+
+              </div>
+
+                <input type="submit" value="Submit" class="m-2 px-3 btn btn-primary">
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+
