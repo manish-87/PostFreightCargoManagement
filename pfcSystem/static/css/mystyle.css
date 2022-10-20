@@ -14,9 +14,7 @@ broder-radius:15px
 font-weight : bold
 }
 
-.active{background-color : grey;
-broder-radius : 30px
-}
+
 
 nav-item .active{
 background-color : pink;

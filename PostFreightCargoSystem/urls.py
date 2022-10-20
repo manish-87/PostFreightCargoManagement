@@ -18,6 +18,7 @@ from django.urls import path
 from pfcSystem.views import *
 from django.conf.urls.static import static
 from django.conf import settings
+from  django.urls import path,include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',index,name="index"),
@@ -45,5 +46,6 @@ urlpatterns = [
     #path('betweendate_bookingreport', betweendate_bookingreport, name="betweendate_bookingreport"),
     path('betweendate_bookingreport', betweendate_bookingreport, name="betweendate_bookingreport"),
     path('betweendate_contactreport', betweendate_contactreport, name="betweendate_contactreport"),
+    path('',include('payment.urls'))
 
               ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
